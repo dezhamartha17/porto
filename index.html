@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>My Portfolio</title>
+        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Ramaraja&display=swap" rel="stylesheet">
+        <style>
+            /* Custom styling */
+            /* Update global colors */
+            body {
+                font-family: 'Ramaraja', serif; /* Font utama */
+                background-color: #98DBC6; /* Background color */
+                color: #011A27; /* Dark text color */
+                position: relative;
+                overflow: auto; /* Ensure scrolling is enabled */
+            }
+
+            #hero {
+                background: linear-gradient(to top right, rgba(1, 26, 39, 0.5), rgba(0, 0, 0, 0.3)),
+                            url('https://source.unsplash.com/1600x900/?nature') no-repeat center center;
+                background-size: cover;
+            }
+
+            .text-center h1, .text-center p {
+                color: #F0810F; /* Orange text for contrast */
+            }
+
+            .btn-custom {
+                background: #F0810F; /* Orange button */
+                transition: background 0.3s ease; /* Smooth transition */
+            }
+
+            .btn-custom:hover {
+                background: #063852; /* Dark blue on hover */
+            }
+
+            .navbar-transparent {
+                background: rgba(6, 56, 82, 0.6); /* Transparent dark blue background */
+                backdrop-filter: blur(10px); /* Blur effect */
+            }
+
+            /* Remove gradient circles */
+            .gradient-corner {
+                display: none; /* Hide gradient circles */
+            }
+            
+            /* Add soft blur background effect */
+            .blur-background {
+                background: rgba(255, 255, 255, 0.2); /* Light color for soft blur effect */
+                backdrop-filter: blur(8px); /* Apply blur effect */
+                z-index: 0; /* Ensure it is behind the main content */
+                animation: blurAnimation 10s ease-in-out infinite; /* Animation for background */
+            }
+
+            @keyframes blurAnimation {
+                0% {
+                    background: rgba(255, 255, 255, 0.2); /* Initial light color */
+                }
+                50% {
+                    background: rgba(255, 255, 255, 0.4); /* Slightly darker during animation */
+                }
+                100% {
+                    background: rgba(255, 255, 255, 0.2); /* Return to initial color */
+                }
+            }
+            .fade-in {
+                opacity: 0;
+                animation: fadeIn 2s ease-in forwards;
+            }
+            @keyframes fadeIn {
+                to {
+                    opacity: 1;
+                }
+            }
+            .btn-custom:hover {
+                background: linear-gradient(to right, #FFB6C1, #FFC300);
+            }
+            .navbar-transparent {
+                background: rgba(255, 255, 255, 0.2); /* Transparent background */
+                backdrop-filter: blur(10px); /* Blur effect */
+            }
+            /* Update styles for the hero section */
+            #hero {
+                background: linear-gradient(to top right, rgba(255, 255, 255, 0.5), rgba(0, 0, 0, 0.3)),
+                            url('https://source.unsplash.com/1600x900/?nature') no-repeat center center;
+                background-size: cover;
+            }
+
+            .text-center h1, .text-center p {
+                color: #88753d; /* Cream color text for contrast */
+            }
+
+            .btn-custom {
+                background: linear-gradient(to right, #FFB6C1, #FFC300); /* Gradient button */
+                transition: background 0.3s ease; /* Smooth transition */
+            }
+
+            .btn-custom:hover {
+                background: linear-gradient(to right, #FFC300, #FFB6C1); /* Inverse gradient on hover */
+            }
+
+        </style>
+    </head>
+    
+    
+<body>
+
+    <!-- Gradient Corner -->
+    <div class="gradient-corner"></div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar-transparent p-6 fixed w-full top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-3xl font-bold text-blue-600">My Portfolio</h1>
+            <div class="space-x-4">
+                <a href="#about" class="text-gray-700 hover:text-blue-600">About</a>
+                <a href="#projects" class="text-gray-700 hover:text-blue-600">Projects</a>
+                <a href="#contact" class="text-gray-700 hover:text-blue-600">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative h-screen flex items-center justify-center bg-cover bg-center" style="background-image: url('https://source.unsplash.com/1600x900/?nature');">
+        <!-- Blur effect -->
+        <div class="absolute inset-0 bg-gray-200 opacity-50 blur-background"></div>
+    
+        <div class="text-center fade-in relative z-10">
+            <h1 class="text-5xl md:text-6xl font-bold mb-4 text-white">Hi, I'm [Your Name]</h1>
+            <p class="text-xl md:text-2xl mb-8 text-white">A Passionate Developer & Designer</p>
+            <a href="#projects" class="bg-orange-500 text-white py-3 px-6 rounded-full btn-custom">View My Work</a>
+        </div>
+    </section>
+    
+
+    <!-- About Section -->
+    <section id="about" class="py-16">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-12 text-blue-700">About Me</h2>
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <img src="https://source.unsplash.com/400x400/?portrait" class="rounded-full w-48 h-48 mb-6 md:mb-0 shadow-lg">
+                <div class="md:w-2/3 md:ml-12">
+                    <p class="text-lg leading-loose">I'm a software developer with a passion for creating beautiful and functional web applications. With a background in both front-end and back-end development, I enjoy solving problems and learning new technologies. When I'm not coding, I love exploring new design trends and experimenting with creative projects.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-16 bg-gradient-to-r from-yellow-100 via-red-100 to-pink-100">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-12 text-pink-700">My Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="bg-white p-6 rounded-lg shadow-lg transform transition duration-500 hover:scale-105 hover:shadow-xl">
+                    <img src="https://source.unsplash.com/300x200/?website" alt="Project Image" class="rounded-t-lg mb-4">
+                    <h3 class="text-2xl font-bold mb-2 text-blue-700">Project 1</h3>
+                    <p class="text-gray-600">Description of project 1. This is a brief overview of what the project is about.</p>
+                </div>
+                <!-- Project 2 -->
+                <div class="bg-white p-6 rounded-lg shadow-lg transform transition duration-500 hover:scale-105 hover:shadow-xl">
+                    <img src="https://source.unsplash.com/300x200/?app" alt="Project Image" class="rounded-t-lg mb-4">
+                    <h3 class="text-2xl font-bold mb-2 text-blue-700">Project 2</h3>
+                    <p class="text-gray-600">Description of project 2. This is a brief overview of what the project is about.</p>
+                </div>
+                <!-- Project 3 -->
+                <div class="bg-white p-6 rounded-lg shadow-lg transform transition duration-500 hover:scale-105 hover:shadow-xl">
+                    <img src="https://source.unsplash.com/300x200/?design" alt="Project Image" class="rounded-t-lg mb-4">
+                    <h3 class="text-2xl font-bold mb-2 text-blue-700">Project 3</h3>
+                    <p class="text-gray-600">Description of project 3. This is a brief overview of what the project is about.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-gradient-to-r from-green-100 via-blue-100 to-pink-100">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-12 text-green-700">Contact Me</h2>
+            <form action="#" method="POST" class="max-w-lg mx-auto">
+                <div class="mb-6">
+                    <label for="name" class="block mb-2 text-sm font-medium text-gray-600">Your Name</label>
+                    <input type="text" id="name" class="w-full p-3 rounded-lg bg-white text-gray-700" placeholder="John Doe">
+                </div>
+                <div class="mb-6">
+                    <label for="email" class="block mb-2 text-sm font-medium text-gray-600">Your Email</label>
+                    <input type="email" id="email" class="w-full p-3 rounded-lg bg-white text-gray-700" placeholder="you@example.com">
+                </div>
+                <div class="mb-6">
+                    <label for="message" class="block mb-2 text-sm font-medium text-gray-600">Your Message</label>
+                    <textarea id="message" rows="4" class="w-full p-3 rounded-lg bg-white text-gray-700" placeholder="Write your message..."></textarea>
+                </div>
+                <button type="submit" class="bg-pink-500 text-white py-3 px-6 rounded-full hover:bg-pink-600 w-full">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white py-6">
+        <div class="container mx-auto text-center">
+            <p class="text-gray-600">© 2024 My Portfolio. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for smooth scrolling -->
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
