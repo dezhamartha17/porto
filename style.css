@@ -263,6 +263,22 @@ section {
 .tl-desc { font-size: 12px; margin-top: 14px; line-height: 1.55; color: var(--ink-dim); }
 .tl-cell .mark { position: absolute; top: 16px; right: 20px; font-family: 'Fraunces',serif; font-style: italic; font-size: 14px; color: var(--ink-dim); }
 
+/* ===== Bio + photo row ===== */
+.bio-photo-row {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+.bio-block { flex: 1; min-width: 0; }
+.photo-col {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  flex-shrink: 0;
+  width: 140px;
+}
+
 /* ===== Hero photo ===== */
 .hero-photo {
   width: 140px;
@@ -272,26 +288,27 @@ section {
   display: block;
   border: 2px solid var(--line);
   filter: grayscale(20%);
-  margin-bottom: 24px;
+  margin-bottom: 0;
   box-shadow: 4px 4px 0 var(--accent);
 }
 
 /* ===== CV download button ===== */
 .cv-download {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: center;
+  gap: 8px;
   border: 2px solid var(--line);
-  padding: 12px 20px;
-  font-size: 11px;
+  border-top: 0;
+  padding: 10px 8px;
+  font-size: 10px;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   font-weight: 700;
   background: var(--ink);
   color: var(--bg);
   cursor: pointer;
   text-decoration: none;
-  margin-top: 20px;
   transition: transform 0.2s, box-shadow 0.2s;
   box-shadow: 4px 4px 0 var(--accent);
 }
