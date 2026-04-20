@@ -286,8 +286,8 @@
   .hm-head span { font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink-dim); }
   .heatmap {
     display: grid;
-    grid-template-columns: repeat(26, 1fr);
-    gap: 3px;
+    grid-template-columns: repeat(52, 1fr);
+    gap: 2px;
   }
   .cell { aspect-ratio: 1; background: var(--cream); border-radius: 0; transition: transform 0.15s; }
   .cell:hover { transform: scale(1.5); z-index: 2; position: relative; }
@@ -653,7 +653,7 @@
     <div class="heatmap-wrap">
       <div class="hm-head">
         <h4>Contribution graph</h4>
-        <span>last 26 weeks</span>
+        <span>last 52 weeks</span>
       </div>
       <div class="heatmap" id="heatmap"></div>
       <div class="hm-legend">
@@ -836,19 +836,19 @@ function renderHeatmap(contributions) {
   hm.innerHTML = '';
   const today = new Date();
   const start = new Date(today);
-  start.setDate(start.getDate() - 26 * 7 + 1);
+  start.setDate(start.getDate() - 52 * 7 + 1);
 
   const byDate = {};
   contributions.forEach(c => { byDate[c.date] = c.level; });
 
-  for (let i = 0; i < 26 * 7; i++) {
+  for (let i = 0; i < 52 * 7; i++) {
     const d = new Date(start);
     d.setDate(d.getDate() + i);
     const key = d.toISOString().slice(0, 10);
     const lvl = byDate[key] ?? 0;
     const cell = document.createElement('div');
     cell.className = 'cell' + (lvl > 0 ? ' l' + lvl : '');
-    cell.title = key + ' · level ' + lvl;
+    cell.title = key + (lvl > 0 ? ' · level ' + lvl : ' · no contributions');
     hm.appendChild(cell);
   }
 }
@@ -866,7 +866,7 @@ function calcStreak(contributions) {
 function fallbackHeatmap() {
   const hm = document.getElementById('heatmap');
   hm.innerHTML = '';
-  for (let i = 0; i < 26 * 7; i++) {
+  for (let i = 0; i < 52 * 7; i++) {
     const c = document.createElement('div');
     const r = Math.random();
     c.className = 'cell' + (r < 0.38 ? '' : r < 0.6 ? ' l1' : r < 0.8 ? ' l2' : r < 0.93 ? ' l3' : ' l4');
@@ -883,12 +883,14 @@ fetch(`https://api.github.com/users/${GH_USER}`)
   })
   .catch(() => {});
 
-// Fetch contributions heatmap
-fetch(`https://github-contributions-api.jogruber.de/v4/${GH_USER}?y=last`)
-  .then(r => r.json())
-  .then(data => {
-    const contribs = data.contributions ?? [];
-    const total = contribs.reduce((s, c) => s + c.count, 0);
+// Fetch contributions heatmap — last 2 years to cover full 52-week window
+Promise.all([
+  fetch(`https://github-contributions-api.jogruber.de/v4/${GH_USER}?y=2025`).then(r => r.json()),
+  fetch(`https://github-contributions-api.jogruber.de/v4/${GH_USER}?y=2024`).then(r => r.json()),
+])
+  .then(([d2025, d2024]) => {
+    const contribs = [...(d2024.contributions ?? []), ...(d2025.contributions ?? [])];
+    const total = (d2024.total?.['2024'] ?? 0) + (d2025.total?.['2025'] ?? 0);
     const streak = calcStreak(contribs);
     document.getElementById('gh-contributions').textContent = total.toLocaleString();
     document.getElementById('gh-streak').textContent = streak;
