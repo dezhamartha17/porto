@@ -127,7 +127,7 @@ nav.top .clock b { color: var(--ink); }
 .typed-cursor { display: inline-block; width: 8px; height: 14px; background: var(--accent); margin-left: 4px; animation: cblink 1s steps(2) infinite; vertical-align: -2px; }
 @keyframes cblink { 50% { opacity: 0; } }
 
-.hero-right { padding: 48px; display: flex; flex-direction: column; justify-content: space-between; background: var(--cream); position: relative; }
+.hero-right { padding: 48px; display: flex; flex-direction: column; gap: 24px; background: var(--cream); position: relative; }
 .hero-right::before {
   content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px;
   background: repeating-linear-gradient(90deg, var(--line) 0 8px, transparent 8px 16px);
@@ -288,7 +288,7 @@ section {
   display: block;
   border: 2px solid var(--line);
   filter: grayscale(20%);
-  margin-bottom: 0;
+  margin-bottom: 10px;
   box-shadow: 4px 4px 0 var(--accent);
 }
 
