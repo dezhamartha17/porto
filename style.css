@@ -265,15 +265,15 @@ section {
 
 /* ===== Hero photo ===== */
 .hero-photo {
-  width: 100%;
-  aspect-ratio: 3/4;
+  width: 140px;
+  height: 160px;
   object-fit: cover;
-  object-position: top;
+  object-position: top center;
   display: block;
   border: 2px solid var(--line);
   filter: grayscale(20%);
   margin-bottom: 24px;
-  box-shadow: 6px 6px 0 var(--accent);
+  box-shadow: 4px 4px 0 var(--accent);
 }
 
 /* ===== CV download button ===== */
