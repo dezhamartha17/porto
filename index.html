@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Dezha Aidil Martha — Portfolio</title>
+<title>Dezha A Martha — Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,600&display=swap" rel="stylesheet" />
@@ -437,12 +437,12 @@
     <div class="tag-row">
       <span class="chip blink">Open to Opportunities</span>
       <span class="chip">Est. 2021</span>
-      <span class="chip filled">Fullstack Dev</span>
+      <span class="chip filled">Fullstack Developer</span>
     </div>
     <h1>
       <span class="line"><span>Dezha Aidil</span></span>
       <span class="line"><span><em>Martha</em>—</span></span>
-      <span class="line"><span>Engineer.</span></span>
+      <span class="line"><span>Software Engineer.</span></span>
     </h1>
     <div class="hero-type">
       <span id="typed">Software Engineer</span><span class="typed-cursor"></span>
@@ -465,7 +465,7 @@
       </div>
       <div class="meta-block">
         <div class="k">Stack</div>
-        <div class="v">Laravel · Vue</div>
+        <div class="v">Laravel · .Net</div>
       </div>
       <div class="meta-block">
         <div class="k">Since</div>
@@ -489,7 +489,7 @@
   <span class="divider"></span>
   <span>Bandung, ID · Willing to Move</span>
   <span class="divider"></span>
-  <span>Coffee · ∞</span>
+  <span>Coffee · Americano · Flat White</span>
 </div>
 
 <!-- ABOUT -->
@@ -514,8 +514,8 @@
         <div class="kv-row"><div class="k">Role</div><div class="v">Fullstack Developer</div></div>
         <div class="kv-row"><div class="k">City</div><div class="v">Bandung, ID</div></div>
         <div class="kv-row"><div class="k">Exp</div><div class="v"><b>4 yrs</b></div></div>
-        <div class="kv-row"><div class="k">Degree</div><div class="v">Industrial Eng.</div></div>
-        <div class="kv-row"><div class="k">Speaks</div><div class="v">EN · ID</div></div>
+        <div class="kv-row"><div class="k">Degree</div><div class="v">Informatics Engineering</div></div>
+        <div class="kv-row"><div class="k">Speaks</div><div class="v">ID · EN</div></div>
         <div class="kv-row"><div class="k">Move</div><div class="v">Willing to Move</div></div>
       </div>
     </div>
@@ -542,7 +542,7 @@
     <div class="section-meta">/ 04 items</div>
   </div>
   <div>
-    <a href="https://github.com/dezhamartha17" target="_blank" rel="noopener" class="project-row">
+    <a href="https://longlingo.com" target="_blank" rel="noopener" class="project-row">
       <span class="p-year">'25</span>
       <div>
         <div class="p-title">Longlingo LMS</div>
@@ -555,7 +555,7 @@
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
       </div>
     </a>
-    <a href="https://github.com/dezhamartha17" target="_blank" rel="noopener" class="project-row">
+    <a href="https://nanohealthyfamily.co.id" target="_blank" rel="noopener" class="project-row">
       <span class="p-year">'25</span>
       <div>
         <div class="p-title">Nano Healthy Family POS</div>
@@ -645,10 +645,10 @@
   </div>
   <div class="gh-grid">
     <div class="gh-stats">
-      <div class="gh-stat"><b>1,284</b><div class="lbl">contributions</div></div>
-      <div class="gh-stat"><b>47</b><div class="lbl">public repos</div></div>
-      <div class="gh-stat"><b>214</b><div class="lbl">PRs merged</div></div>
-      <div class="gh-stat"><b>18</b><div class="lbl">day streak</div></div>
+      <div class="gh-stat"><b id="gh-contributions">—</b><div class="lbl">contributions</div></div>
+      <div class="gh-stat"><b id="gh-repos">—</b><div class="lbl">public repos</div></div>
+      <div class="gh-stat"><b id="gh-streak">—</b><div class="lbl">day streak</div></div>
+      <div class="gh-stat"><b id="gh-followers">—</b><div class="lbl">followers</div></div>
     </div>
     <div class="heatmap-wrap">
       <div class="hm-head">
@@ -828,16 +828,77 @@ skills.forEach((sk, i) => {
   st.appendChild(row);
 });
 
-/* ========= HEATMAP ========= */
-const hm = document.getElementById('heatmap');
-for (let i = 0; i < 26 * 7; i++) {
-  const c = document.createElement('div');
-  c.className = 'cell';
-  const r = Math.random();
-  const lvl = r < 0.38 ? 0 : r < 0.6 ? 1 : r < 0.8 ? 2 : r < 0.93 ? 3 : 4;
-  if (lvl > 0) c.classList.add('l' + lvl);
-  hm.appendChild(c);
+/* ========= GITHUB DATA ========= */
+const GH_USER = 'dezhamartha17';
+
+function renderHeatmap(contributions) {
+  const hm = document.getElementById('heatmap');
+  hm.innerHTML = '';
+  const today = new Date();
+  const start = new Date(today);
+  start.setDate(start.getDate() - 26 * 7 + 1);
+
+  const byDate = {};
+  contributions.forEach(c => { byDate[c.date] = c.level; });
+
+  for (let i = 0; i < 26 * 7; i++) {
+    const d = new Date(start);
+    d.setDate(d.getDate() + i);
+    const key = d.toISOString().slice(0, 10);
+    const lvl = byDate[key] ?? 0;
+    const cell = document.createElement('div');
+    cell.className = 'cell' + (lvl > 0 ? ' l' + lvl : '');
+    cell.title = key + ' · level ' + lvl;
+    hm.appendChild(cell);
+  }
 }
+
+function calcStreak(contributions) {
+  const sorted = [...contributions].sort((a, b) => b.date.localeCompare(a.date));
+  let streak = 0;
+  for (const c of sorted) {
+    if (c.count > 0) streak++;
+    else break;
+  }
+  return streak;
+}
+
+function fallbackHeatmap() {
+  const hm = document.getElementById('heatmap');
+  hm.innerHTML = '';
+  for (let i = 0; i < 26 * 7; i++) {
+    const c = document.createElement('div');
+    const r = Math.random();
+    c.className = 'cell' + (r < 0.38 ? '' : r < 0.6 ? ' l1' : r < 0.8 ? ' l2' : r < 0.93 ? ' l3' : ' l4');
+    hm.appendChild(c);
+  }
+}
+
+// Fetch GitHub user stats
+fetch(`https://api.github.com/users/${GH_USER}`)
+  .then(r => r.json())
+  .then(u => {
+    document.getElementById('gh-repos').textContent = u.public_repos ?? '—';
+    document.getElementById('gh-followers').textContent = u.followers ?? '—';
+  })
+  .catch(() => {});
+
+// Fetch contributions heatmap
+fetch(`https://github-contributions-api.jogruber.de/v4/${GH_USER}?y=last`)
+  .then(r => r.json())
+  .then(data => {
+    const contribs = data.contributions ?? [];
+    const total = contribs.reduce((s, c) => s + c.count, 0);
+    const streak = calcStreak(contribs);
+    document.getElementById('gh-contributions').textContent = total.toLocaleString();
+    document.getElementById('gh-streak').textContent = streak;
+    renderHeatmap(contribs);
+  })
+  .catch(() => {
+    document.getElementById('gh-contributions').textContent = '—';
+    document.getElementById('gh-streak').textContent = '—';
+    fallbackHeatmap();
+  });
 
 /* ========= REVEAL + SKILL BAR ANIMATION ========= */
 const io = new IntersectionObserver(entries => {
